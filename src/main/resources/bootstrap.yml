@@ -1,0 +1,26 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos.url@
+        namespace: hp-space
+        group: HP_GROUP
+      config:
+        server-addr: @nacos.url@
+        namespace: hp-space
+        group: HP_GROUP
+        file-extension: yaml
+  profiles:
+    active: @profiles.active@
+  config:
+    import:
+      - optional:nacos:application-@profiles.active@.yml
+im:
+  server:
+    port: 9999
+    path: /ws
